@@ -1,0 +1,272 @@
+/* components.css */
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero-slide {
+  position: relative;
+  background: #0a0f1d;
+  border: 2px solid #2a3a5c;
+  border-left: 10px solid rgb(var(--rgb-blue));
+  border-radius: 1rem;
+  padding: 2.5rem 2.75rem;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero-slide::before {
+  content: '';
+  position: absolute;
+  inset: -50%;
+  background: linear-gradient(125deg, rgba(var(--rgb-blue), 0.4) 0%, rgba(var(--rgb-purple), 0.4) 25%, rgba(var(--rgb-cyan), 0.4) 50%, rgba(var(--rgb-emerald), 0.4) 75%, rgba(var(--rgb-blue), 0.4) 100%);
+  background-size: 300% 300%;
+  animation: heroGradientShift 15s ease-in-out infinite;
+  filter: blur(60px);
+  z-index: -2;
+}
+
+.hero-slide::after {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background: radial-gradient(circle at 20% 30%, rgba(var(--rgb-blue), 0.3) 0%, transparent 40%), radial-gradient(circle at 80% 70%, rgba(var(--rgb-purple), 0.3) 0%, transparent 40%);
+  z-index: -1;
+}
+
+.hero-title {
+  font-size: clamp(1.8rem, 4.2vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, #ffffff 0%, #bfdbfe 50%, #ddd6fe 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-pillar-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: 1px solid currentColor;
+  background: rgba(10, 15, 29, 0.7);
+  backdrop-filter: blur(8px);
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   CARDS FLIP 3D
+   ============================================================ */
+.pillar-card-wrapper {
+  height: 480px; /* Aumentei a altura para caber mais texto antes de rolar */
+  cursor: pointer;
+}
+
+.flip-card-front, .flip-card-back {
+  padding: 1.5rem;
+  background-color: #131c31;
+  border: 2px solid #2a3a5c;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.flip-card-front {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pillar-card-wrapper:hover .flip-card-front {
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 12px 30px -8px rgba(37, 99, 235, 0.35);
+}
+
+.subtopic-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.7rem;
+  background: #0f172a;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  width: 100%;
+}
+
+.subtopic-row .dot {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+/* CORREÇÃO DO CORTE DE TEXTO NO VERSO */
+.concept-scroll-area {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Scrollbar customizada */
+.concept-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.concept-scroll-area::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 4px;
+}
+.concept-scroll-area::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+.concept-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.concept-card {
+  padding: 0.65rem 0.75rem;
+  background: #0f172a;
+  border-left: 3px solid;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ============================================================
+   SLIDER (Atualizado visual e fonte)
+   ============================================================ */
+.classification-block {
+  background-color: #131c31;
+  border: 2px solid #2a3a5c;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  overflow: hidden;
+}
+
+.time-slider {
+  position: relative;
+  height: 56px; /* Um pouco mais fino */
+  margin: 1.5rem 0 2rem;
+  background: #0f172a;
+  border: 2px solid #334155;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  cursor: pointer;
+}
+
+.time-slider-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, rgba(59,130,246,0.3), rgba(59,130,246,0.1));
+  border-radius: 9999px;
+  pointer-events: none;
+}
+
+.time-slider-handle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 20px rgba(59,130,246,0.6);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+}
+
+.time-slider-labels {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.25rem;
+  pointer-events: none;
+}
+
+.time-slider-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.accounts-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.account-column {
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  background: #0f172a;
+  border: 2px solid;
+  transition: all 0.3s ease;
+  min-height: 380px;
+}
+
+.account-column.cp { border-color: rgba(59, 130, 246, 0.4); }
+.account-column.pnc { border-color: rgba(99, 102, 241, 0.4); }
+
+.account-column.dimmed { opacity: 0.35; transform: scale(0.98); }
+.account-column.highlighted { border-color: #3b82f6; box-shadow: 0 0 30px rgba(59,130,246,0.3); }
+
+.account-item {
+  padding: 0.7rem 0.85rem;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-bottom: 0.5rem;
+}
+
+.account-icon {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+/* AUMENTO DA FONTE DOS MESES */
+.account-months-badge {
+  font-size: 0.85rem; /* Aumentado de 10px para ~13px */
+  font-weight: 800;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.375rem;
+  background: #1e293b;
+  color: #60a5fa;
+  border: 1px solid #3b82f6;
+}
+
+/* Outros botões mantidos... */
+.action-btn-reset { padding: 0.5rem 1rem; background: #334155; color: #f8fafc; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; border: none; cursor: pointer; }
+.sim-action-card { padding: 1rem; background: #1e293b; border: 2px solid #334155; border-radius: 0.75rem; text-align: left; transition: all 0.2s; width: 100%; cursor: pointer; }
+.sim-action-card:hover { border-color: #3b82f6; transform: translateY(-2px); background: #0f172a; }
+.quiz-opt-btn { width: 100%; text-align: left; padding: 1rem; border-radius: 0.75rem; background: #0f172a; border: 2px solid #334155; transition: all 0.2s; display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; }
+.quiz-opt-btn:hover:not(:disabled) { border-color: #3b82f6; background: #1e293b; }
+.quiz-opt-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.quiz-opt-letter { width: 1.75rem; height: 1.75rem; border-radius: 9999px; background: #1e293b; color: #cbd5e1; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }

@@ -6,6 +6,7 @@ function renderQuiz() {
   const container = document.getElementById('quiz-container');
   if (!container) return;
 
+  // Renderiza todas as perguntas dinamicamente com base no quiz-data.js
   container.innerHTML = QUIZ_QUESTIONS.map(q => `
     <div id="quiz-q${q.id}" class="space-y-4 ${q.id > 1 ? 'hidden' : ''}">
       <div class="flex items-center justify-between border-b border-slate-700 pb-3">
@@ -28,15 +29,20 @@ function renderQuiz() {
       <div class="w-20 h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-400 text-emerald-400 flex items-center justify-center text-4xl mx-auto">
         <i class="fa-solid fa-trophy"></i>
       </div>
-      <h3 class="text-2xl font-black text-white">Excelente!</h3>
-      <p class="text-sm text-slate-200">Pontuação: <span id="final-score-display" class="font-bold text-emerald-400 font-mono text-xl">0</span> / 300</p>
-      <button onclick="restartQuiz()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl">Reiniciar</button>
+      <h3 class="text-2xl font-black text-white">Excelente Apresentação!</h3>
+      <!-- Pontuação final alterada para 1000 -->
+      <p class="text-sm text-slate-200">Pontuação Total: <span id="final-score-display" class="font-bold text-emerald-400 font-mono text-xl">0</span> / 1000</p>
+      <button onclick="restartQuiz()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl transition-all">
+        Reiniciar Quiz
+      </button>
     </div>
   `;
 }
 
 function answerQuiz(qNum, option, isCorrect) {
+  // Desabilita todos os botões da pergunta atual para evitar duplo clique
   document.querySelectorAll(`.q${qNum}-opt`).forEach(b => b.disabled = true);
+  
   const fb = document.getElementById(`feedback-q${qNum}`);
   fb.classList.remove('hidden');
 
@@ -50,11 +56,12 @@ function answerQuiz(qNum, option, isCorrect) {
     fb.innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Incorreta. Revise o conceito.';
   }
 
+  // Aguarda 1.6s e avança para a próxima pergunta (ou tela final)
   setTimeout(() => {
-    const next = qNum + 1;
-    if (next <= QUIZ_QUESTIONS.length) {
+    const nextQ = qNum + 1;
+    if (nextQ <= QUIZ_QUESTIONS.length) {
       document.getElementById(`quiz-q${qNum}`).classList.add('hidden');
-      document.getElementById(`quiz-q${next}`).classList.remove('hidden');
+      document.getElementById(`quiz-q${nextQ}`).classList.remove('hidden');
     } else {
       document.getElementById(`quiz-q${qNum}`).classList.add('hidden');
       document.getElementById('quiz-final').classList.remove('hidden');
@@ -67,7 +74,14 @@ function restartQuiz() {
   currentScore = 0;
   document.getElementById('user-score').innerText = '0';
   document.getElementById('quiz-final').classList.add('hidden');
+  
+  // Esconde todas as perguntas e mostra a primeira
+  QUIZ_QUESTIONS.forEach(q => {
+    document.getElementById(`quiz-q${q.id}`).classList.add('hidden');
+  });
   document.getElementById('quiz-q1').classList.remove('hidden');
+
+  // Reseta o estado de todos os botões e feedbacks
   QUIZ_QUESTIONS.forEach(q => {
     document.querySelectorAll(`.q${q.id}-opt`).forEach(b => b.disabled = false);
     document.getElementById(`feedback-q${q.id}`).classList.add('hidden');

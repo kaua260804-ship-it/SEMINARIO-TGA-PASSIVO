@@ -1,4 +1,4 @@
-// theory-data.js — Todo o conteúdo do slide teórico
+// theory-data.js — Conteúdo do slide teórico atualizado com as falas
 
 const THEME_DATA = {
   pillar: 'PILAR TEÓRICO — EQUIPE 02',
@@ -11,7 +11,6 @@ const THEME_DATA = {
   ]
 };
 
-// Cada pilar tem tópicos curtos (visíveis) + conceitos completos (expandíveis)
 const PILLARS_DATA = [
   {
     pillar: 'PILAR 01',
@@ -66,30 +65,29 @@ const PILLARS_DATA = [
     definition: 'Determinar o valor monetário pelo qual o passivo será registrado nas demonstrações contábeis.',
     summary: [
       'Custo Histórico',
+      'Valor Justo',
       'Valor Presente (AVP)',
-      'Valor de Liquidação',
-      'Moeda Estrangeira',
+      'Custo Corrente',
       'Atualização'
     ],
     concepts: [
       { tag: 'Custo Histórico',      text: 'Valor contratado originalmente no ato da transação (base mais comum).' },
+      { tag: 'Valor Justo',          text: 'Valor de transferência da obrigação em uma negociação entre participantes do mercado.' },
       { tag: 'Valor Presente (AVP)', text: 'Desconto financeiro em obrigações de longo prazo — Ajuste a Valor Presente.' },
-      { tag: 'Valor de Liquidação',  text: 'Estimativa necessária para quitar a dívida no presente.' },
-      { tag: 'Moeda Estrangeira',    text: 'Conversão pela taxa de fechamento na data do balanço.' },
+      { tag: 'Custo Corrente',       text: 'Valor que seria necessário pagar atualmente para assumir uma obrigação equivalente.' },
       { tag: 'Atualização',          text: 'Encargos financeiros apropriados ao resultado pelo regime de competência.' }
     ]
   }
 ];
 
-// Conceitos extras (grid de 4 cards abaixo dos pilares)
 const EXTRA_CONCEPTS = [
+  {
+    icon: 'fa-arrow-trend-down', title: 'Passivo a Descoberto', color: 'rose',
+    text: 'Ocorre quando o total das obrigações supera os bens e direitos, resultando em um Patrimônio Líquido negativo (desequilíbrio financeiro).'
+  },
   {
     icon: 'fa-shield-halved', title: 'Passivo Contingente', color: 'amber',
     text: 'Obrigação POSSÍVEL, surgida de eventos passados, cuja existência será confirmada por eventos futuros incertos. Não é reconhecido — apenas divulgado em Notas Explicativas.'
-  },
-  {
-    icon: 'fa-clock-rotate-left', title: 'Provisão vs. Passivo', color: 'rose',
-    text: 'Provisão tem prazo e valor INCERTOS, mas estimáveis. Passivo comum (fornecedores) tem valor e prazo DEFINIDOS contratualmente.'
   },
   {
     icon: 'fa-handshake', title: 'Obrigação Construtiva', color: 'indigo',
@@ -101,7 +99,6 @@ const EXTRA_CONCEPTS = [
   }
 ];
 
-// Cabeçalho da seção de classificação
 const CLASSIFICATION_HEADER = {
   title: 'Classificação por Exigibilidade',
   subtitle: 'Arraste o controle deslizante para ver as contas migrarem entre Passivo Circulante e Não Circulante conforme o prazo de vencimento.'

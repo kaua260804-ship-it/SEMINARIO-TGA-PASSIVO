@@ -1,15 +1,15 @@
 /* components.css */
 
 /* ============================================================
-   HERO
+   HERO COM PARALLAX RGB AUTOMÁTICO
    ============================================================ */
 .hero-slide {
   position: relative;
   background: #0a0f1d;
   border: 2px solid #2a3a5c;
-  border-left: 10px solid rgb(var(--rgb-blue));
+  border-left: 12px solid rgb(var(--rgb-blue));
   border-radius: 1rem;
-  padding: 2.5rem 2.75rem;
+  padding: 3rem;
   overflow: hidden;
   isolation: isolate;
 }
@@ -34,7 +34,7 @@
 }
 
 .hero-title {
-  font-size: clamp(1.8rem, 4.2vw, 3.4rem);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
   font-weight: 900;
   line-height: 1.05;
   letter-spacing: -0.02em;
@@ -49,10 +49,10 @@
 .hero-pillar-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.45rem;
-  padding: 0.4rem 0.9rem;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
   border-radius: 9999px;
-  font-size: 0.7rem;
+  font-size: 1rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -64,24 +64,53 @@
 }
 
 /* ============================================================
-   CARDS FLIP 3D
+   CARDS FLIP 3D (Totalmente Responsivo com CSS Grid)
    ============================================================ */
 .pillar-card-wrapper {
-  height: 480px; /* Aumentei a altura para caber mais texto antes de rolar */
+  /* Altura mínima para alinhamento visual. Se o texto for maior, ele cresce. */
+  min-height: 800px; 
   cursor: pointer;
+  perspective: 1200px;
+  position: relative;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  
+  /* Grid sobrepõe e alinha automaticamente o tamanho das duas faces */
+  display: grid;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
 }
 
 .flip-card-front, .flip-card-back {
-  padding: 1.5rem;
+  grid-area: 1 / 1;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  padding: 2rem;
   background-color: #131c31;
   border: 2px solid #2a3a5c;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 }
 
+/* A frente NUNCA tem barra de rolagem, o texto expande o card */
 .flip-card-front {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow-y: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
 }
 
 .pillar-card-wrapper:hover .flip-card-front {
@@ -92,8 +121,8 @@
 .subtopic-row {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.55rem 0.7rem;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
   background: #0f172a;
   border: 1px solid #334155;
   border-radius: 0.5rem;
@@ -101,59 +130,48 @@
 }
 
 .subtopic-row .dot {
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 0.6rem;
+  height: 0.6rem;
   border-radius: 9999px;
   flex-shrink: 0;
 }
 
-/* CORREÇÃO DO CORTE DE TEXTO NO VERSO */
+/* O VERSO pode ter rolagem caso o texto seja muito grande */
 .concept-scroll-area {
-  flex: 1;
+  flex: 1; 
   overflow-y: auto;
-  padding-right: 0.5rem;
-  margin-bottom: 0.5rem;
+  padding-right: 0.75rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-/* Scrollbar customizada */
-.concept-scroll-area::-webkit-scrollbar {
-  width: 6px;
-}
-.concept-scroll-area::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.5);
-  border-radius: 4px;
-}
-.concept-scroll-area::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
-}
-.concept-scroll-area::-webkit-scrollbar-thumb:hover {
-  background: #475569;
-}
+.concept-scroll-area::-webkit-scrollbar { width: 8px; }
+.concept-scroll-area::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.5); border-radius: 4px; }
+.concept-scroll-area::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
 
 .concept-card {
-  padding: 0.65rem 0.75rem;
+  padding: 1rem;
   background: #0f172a;
-  border-left: 3px solid;
+  border-left: 4px solid;
   border-radius: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.85rem;
 }
 
 /* ============================================================
-   SLIDER (Atualizado visual e fonte)
+   SLIDER DE EXIGIBILIDADE
    ============================================================ */
 .classification-block {
   background-color: #131c31;
   border: 2px solid #2a3a5c;
   border-radius: 1rem;
-  padding: 1.75rem;
+  padding: 2.5rem;
   overflow: hidden;
 }
 
 .time-slider {
   position: relative;
-  height: 56px; /* Um pouco mais fino */
-  margin: 1.5rem 0 2rem;
+  height: 72px;
+  margin: 2rem 0;
   background: #0f172a;
   border: 2px solid #334155;
   border-radius: 9999px;
@@ -177,8 +195,8 @@
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   border-radius: 9999px;
   background: linear-gradient(135deg, #3b82f6, #2563eb);
   border: 3px solid #ffffff;
@@ -188,8 +206,10 @@
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 1rem;
+  font-size: 1.25rem;
+  cursor: grab;
 }
+.time-slider-handle:active { cursor: grabbing; }
 
 .time-slider-labels {
   position: absolute;
@@ -197,30 +217,31 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.25rem;
+  padding: 0 1.5rem;
   pointer-events: none;
 }
 
 .time-slider-label {
-  font-size: 0.75rem;
+  font-size: 1.1rem;
   font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: #94a3b8;
 }
 
 .accounts-panel {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 2rem;
 }
 
 .account-column {
-  padding: 1.25rem;
-  border-radius: 0.75rem;
+  padding: 2rem;
+  border-radius: 1rem;
   background: #0f172a;
   border: 2px solid;
-  transition: all 0.3s ease;
-  min-height: 380px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 400px;
 }
 
 .account-column.cp { border-color: rgba(59, 130, 246, 0.4); }
@@ -230,43 +251,108 @@
 .account-column.highlighted { border-color: #3b82f6; box-shadow: 0 0 30px rgba(59,130,246,0.3); }
 
 .account-item {
-  padding: 0.7rem 0.85rem;
+  padding: 1.25rem;
   background: #1e293b;
   border: 1px solid #334155;
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  margin-bottom: 0.5rem;
+  gap: 1rem;
+  margin-bottom: 0.85rem;
 }
 
 .account-icon {
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 0.5rem;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 0.8rem;
+  font-size: 1.4rem;
 }
 
-/* AUMENTO DA FONTE DOS MESES */
 .account-months-badge {
-  font-size: 0.85rem; /* Aumentado de 10px para ~13px */
+  font-size: 1.2rem;
   font-weight: 800;
-  padding: 0.2rem 0.5rem;
-  border-radius: 0.375rem;
-  background: #1e293b;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.5rem;
+  background: rgba(59, 130, 246, 0.15);
   color: #60a5fa;
-  border: 1px solid #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  font-family: 'JetBrains Mono', monospace;
 }
 
-/* Outros botões mantidos... */
-.action-btn-reset { padding: 0.5rem 1rem; background: #334155; color: #f8fafc; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem; border: none; cursor: pointer; }
-.sim-action-card { padding: 1rem; background: #1e293b; border: 2px solid #334155; border-radius: 0.75rem; text-align: left; transition: all 0.2s; width: 100%; cursor: pointer; }
-.sim-action-card:hover { border-color: #3b82f6; transform: translateY(-2px); background: #0f172a; }
-.quiz-opt-btn { width: 100%; text-align: left; padding: 1rem; border-radius: 0.75rem; background: #0f172a; border: 2px solid #334155; transition: all 0.2s; display: flex; align-items: flex-start; gap: 0.75rem; cursor: pointer; }
-.quiz-opt-btn:hover:not(:disabled) { border-color: #3b82f6; background: #1e293b; }
+.account-column.pnc .account-months-badge {
+  background: rgba(99, 102, 241, 0.15);
+  color: #a5b4fc;
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+/* ============================================================
+   BOTÕES E SIMULADOR
+   ============================================================ */
+.action-btn-reset {
+  padding: 0.75rem 1.5rem;
+  background-color: #334155;
+  color: #f8fafc;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+.action-btn-reset:hover { background-color: #475569; }
+
+.sim-action-card {
+  padding: 1.5rem;
+  background-color: #1e293b;
+  border: 2px solid #334155;
+  border-radius: 0.75rem;
+  text-align: left;
+  transition: all 0.2s ease;
+  width: 100%;
+  cursor: pointer;
+}
+.sim-action-card:hover {
+  border-color: #3b82f6;
+  transform: translateY(-2px);
+  background-color: #0f172a;
+}
+
+/* ============================================================
+   QUIZ
+   ============================================================ */
+.quiz-opt-btn {
+  width: 100%;
+  text-align: left;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  background-color: #0f172a;
+  border: 2px solid #334155;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  cursor: pointer;
+}
+.quiz-opt-btn:hover:not(:disabled) { border-color: #3b82f6; background-color: #1e293b; }
 .quiz-opt-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-.quiz-opt-letter { width: 1.75rem; height: 1.75rem; border-radius: 9999px; background: #1e293b; color: #cbd5e1; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+.quiz-opt-letter {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background-color: #1e293b;
+  color: #cbd5e1;
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}

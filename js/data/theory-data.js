@@ -41,18 +41,18 @@ const PILLARS_DATA = [
     color: 'cyan',
     rgb: '6, 182, 212',
     icon: 'fa-clock',
-    definition: 'Obrigações e dívidas que a empresa precisa pagar no curto prazo (até 12 meses ou ciclo operacional).',
+    definition: 'Obrigações e dívidas que a empresa tem com terceiros que devem ser pagas em até 12 meses ou durante o seu próprio ciclo operacional (curto prazo).',
     summary: [
       'Prazo: Até 12 meses',
-      'Fornecedores',
       'Salários a Pagar',
-      'Impostos',
+      'Impostos a Recolher',
+      'Fornecedores',
       'Empréstimos de Curto Prazo'
     ],
     concepts: [
-      { tag: 'Prazo', text: 'Vencimento em até 12 meses após a data do balanço.' },
+      { tag: 'Salários a Pagar', text: 'Valores devidos aos funcionários pelo trabalho já realizado, mas ainda não pagos (geralmente em 30 dias).' },
+      { tag: 'Impostos a Recolher', text: 'Tributos federais, estaduais e municipais com prazo de pagamento em poucos meses.' },
       { tag: 'Fornecedores', text: 'Dívidas por compras de mercadorias ou serviços a prazo.' },
-      { tag: 'Salários e Impostos', text: 'Obrigações trabalhistas e tributárias geradas na operação.' },
       { tag: 'Empréstimos CP', text: 'Parcelas de financiamentos que vencem no próximo ano.' },
       { tag: 'Importância', text: 'Avalia a capacidade de pagamento imediata e a liquidez da empresa.' }
     ]
@@ -63,18 +63,18 @@ const PILLARS_DATA = [
     color: 'indigo',
     rgb: '99, 102, 241',
     icon: 'fa-calendar-days',
-    definition: 'Obrigações que devem ser pagas no longo prazo, ou seja, com vencimento superior a 12 meses.',
+    definition: 'Dívidas registradas para serem pagas depois de 12 meses. São as chamadas obrigações a longo prazo.',
     summary: [
       'Prazo: > 12 meses',
-      'Financiamentos de LP',
-      'Debêntures',
-      'Provisões Judiciais',
-      'Empréstimos de Longo Prazo'
+      'Empréstimos a Longo Prazo',
+      'Debêntures a Pagar',
+      'Financiamentos',
+      'Provisões'
     ],
     concepts: [
-      { tag: 'Prazo', text: 'Vencimento após 12 meses da data do balanço.' },
-      { tag: 'Financiamentos', text: 'Dívidas para aquisição de imobilizado ou expansão.' },
-      { tag: 'Debêntures', text: 'Captação de recursos com investidores no mercado.' },
+      { tag: 'Empréstimos a Longo Prazo', text: 'Recursos obtidos de bancos com promessa de devolução em prazo superior a 12 meses (com juros).' },
+      { tag: 'Debêntures a Pagar', text: 'Títulos de crédito emitidos para atrair investidores e captar recursos para a empresa.' },
+      { tag: 'Financiamentos', text: 'Dívidas para aquisição de imobilizado ou expansão da estrutura.' },
       { tag: 'Provisões', text: 'Processos judiciais com perda provável estimada.' },
       { tag: 'Importância', text: 'Mostra os compromissos futuros e a estrutura de capital da empresa.' }
     ]
@@ -136,7 +136,8 @@ const EXTRA_CONCEPTS = [
   }
 ];
 
+// Ajuste no texto do Slider de Exigibilidade para casar com a fala dele
 const CLASSIFICATION_HEADER = {
   title: 'Classificação por Exigibilidade',
-  subtitle: 'Arraste o controle deslizante para ver as contas migrarem entre Passivo Circulante e Não Circulante conforme o prazo de vencimento.'
+  subtitle: 'A exigibilidade determina o quão imediata é a obrigação. Arraste o controle deslizante para separar o Curto Prazo (Circulante) do Longo Prazo (Não Circulante).'
 };

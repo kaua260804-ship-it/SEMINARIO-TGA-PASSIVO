@@ -1,4 +1,4 @@
-// theory-data.js — Conteúdo do slide teórico atualizado com as falas
+// theory-data.js — Conteúdo do slide teórico 
 
 const THEME_DATA = {
   pillar: 'PILAR TEÓRICO — EQUIPE 02',
@@ -6,7 +6,8 @@ const THEME_DATA = {
   subtitle: 'Base Fundamental da Teoria Geral da Contabilidade — CPC 00 (R2) & Martins (2007)',
   chips: [
     { icon: 'fa-file-contract',  label: 'Definição',      color: '#60a5fa' },
-    { icon: 'fa-stamp',          label: 'Reconhecimento', color: '#34d399' },
+    { icon: 'fa-clock',          label: 'Prazos',         color: '#34d399' },
+    { icon: 'fa-stamp',          label: 'Reconhecimento', color: '#fbbf24' },
     { icon: 'fa-scale-balanced', label: 'Mensuração',     color: '#c4b5fd' }
   ]
 };
@@ -36,28 +37,68 @@ const PILLARS_DATA = [
   },
   {
     pillar: 'PILAR 02',
-    title: 'Reconhecimento',
-    color: 'emerald',
-    rgb: '16, 185, 129',
-    icon: 'fa-stamp',
-    definition: 'O passivo é reconhecido quando atende aos critérios de probabilidade de saída de recursos e mensuração confiável.',
+    title: 'Passivo Circulante',
+    color: 'cyan',
+    rgb: '6, 182, 212',
+    icon: 'fa-clock',
+    definition: 'Obrigações e dívidas que a empresa precisa pagar no curto prazo (até 12 meses ou ciclo operacional).',
     summary: [
-      'Critério da Probabilidade',
-      'Critério da Mensuração',
-      'Ressalva',
-      'Provisões',
-      'Quando NÃO Reconhecer'
+      'Prazo: Até 12 meses',
+      'Fornecedores',
+      'Salários a Pagar',
+      'Impostos',
+      'Empréstimos de Curto Prazo'
     ],
     concepts: [
-      { tag: 'Critério da Probabilidade', text: 'É PROVÁVEL (mais provável que sim do que não) a saída de recursos.' },
-      { tag: 'Critério da Mensuração',    text: 'O valor do passivo pode ser MENSURADO com confiabilidade.' },
-      { tag: 'Ressalva',                  text: 'Se faltar um dos critérios = Passivo Contingente (só divulgado em Notas).' },
-      { tag: 'Provisões',                 text: 'Perda PROVÁVEL + estimável = reconhece no Balanço como Provisão.' },
-      { tag: 'Quando NÃO Reconhecer',     text: 'Se a probabilidade for possível ou remota, apenas divulgar em Notas Explicativas.' }
+      { tag: 'Prazo', text: 'Vencimento em até 12 meses após a data do balanço.' },
+      { tag: 'Fornecedores', text: 'Dívidas por compras de mercadorias ou serviços a prazo.' },
+      { tag: 'Salários e Impostos', text: 'Obrigações trabalhistas e tributárias geradas na operação.' },
+      { tag: 'Empréstimos CP', text: 'Parcelas de financiamentos que vencem no próximo ano.' },
+      { tag: 'Importância', text: 'Avalia a capacidade de pagamento imediata e a liquidez da empresa.' }
     ]
   },
   {
     pillar: 'PILAR 03',
+    title: 'Passivo Não Circulante',
+    color: 'indigo',
+    rgb: '99, 102, 241',
+    icon: 'fa-calendar-days',
+    definition: 'Obrigações que devem ser pagas no longo prazo, ou seja, com vencimento superior a 12 meses.',
+    summary: [
+      'Prazo: > 12 meses',
+      'Financiamentos de LP',
+      'Debêntures',
+      'Provisões Judiciais',
+      'Empréstimos de Longo Prazo'
+    ],
+    concepts: [
+      { tag: 'Prazo', text: 'Vencimento após 12 meses da data do balanço.' },
+      { tag: 'Financiamentos', text: 'Dívidas para aquisição de imobilizado ou expansão.' },
+      { tag: 'Debêntures', text: 'Captação de recursos com investidores no mercado.' },
+      { tag: 'Provisões', text: 'Processos judiciais com perda provável estimada.' },
+      { tag: 'Importância', text: 'Mostra os compromissos futuros e a estrutura de capital da empresa.' }
+    ]
+  },
+  {
+    pillar: 'PILAR 04',
+    title: 'Reconhecimento',
+    color: 'emerald',
+    rgb: '16, 185, 129',
+    icon: 'fa-stamp',
+    definition: 'Processo de identificar e registrar uma obrigação no Balanço Patrimonial.',
+    summary: [
+      'Critério Único',
+      'Quando registrar',
+      'Provisões'
+    ],
+    concepts: [
+      { tag: 'Critério Único', text: 'Deve representar uma obrigação presente de transferir um recurso econômico, decorrente de acontecimentos passados.' },
+      { tag: 'Quando registrar', text: 'Exemplo: Ao contratar um empréstimo de R$ 20.000 e o dinheiro cair na conta, a obrigação de pagar nasce e deve ser registrada.' },
+      { tag: 'Provisões', text: 'Perda PROVÁVEL + valor estimável = reconhece no Balanço como Provisão.' }
+    ]
+  },
+  {
+    pillar: 'PILAR 05',
     title: 'Mensuração',
     color: 'purple',
     rgb: '139, 92, 246',
@@ -66,16 +107,12 @@ const PILLARS_DATA = [
     summary: [
       'Custo Histórico',
       'Valor Justo',
-      'Valor Presente (AVP)',
-      'Custo Corrente',
-      'Atualização'
+      'Valor Presente (AVP)'
     ],
     concepts: [
-      { tag: 'Custo Histórico',      text: 'Valor contratado originalmente no ato da transação (base mais comum).' },
-      { tag: 'Valor Justo',          text: 'Valor de transferência da obrigação em uma negociação entre participantes do mercado.' },
-      { tag: 'Valor Presente (AVP)', text: 'Desconto financeiro em obrigações de longo prazo — Ajuste a Valor Presente.' },
-      { tag: 'Custo Corrente',       text: 'Valor que seria necessário pagar atualmente para assumir uma obrigação equivalente.' },
-      { tag: 'Atualização',          text: 'Encargos financeiros apropriados ao resultado pelo regime de competência.' }
+      { tag: 'Custo Histórico',      text: 'Valor original contratado no ato da transação (o mais comum).' },
+      { tag: 'Valor Justo',          text: 'Valor de transferência da obrigação em uma negociação de mercado.' },
+      { tag: 'Valor Presente (AVP)', text: 'Valor atual dos pagamentos futuros, considerando uma taxa de desconto (juros).' }
     ]
   }
 ];

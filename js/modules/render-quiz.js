@@ -30,7 +30,7 @@ function renderQuiz() {
         <i class="fa-solid fa-trophy"></i>
       </div>
       <h3 class="text-2xl font-black text-white">Excelente Apresentação!</h3>
-      <!-- Pontuação final alterada para 1000 -->
+      <!-- AQUI ESTAVA O ERRO: Agora mostra a pontuação total de 1000 -->
       <p class="text-sm text-slate-200">Pontuação Total: <span id="final-score-display" class="font-bold text-emerald-400 font-mono text-xl">0</span> / 1000</p>
       <button onclick="restartQuiz()" class="px-5 py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl transition-all">
         Reiniciar Quiz
@@ -47,7 +47,7 @@ function answerQuiz(qNum, option, isCorrect) {
   fb.classList.remove('hidden');
 
   if (isCorrect) {
-    currentScore += 100;
+    currentScore += 100; // Soma 100 pontos por pergunta
     document.getElementById('user-score').innerText = currentScore;
     fb.className = 'p-4 rounded-xl text-xs font-bold mt-4 bg-emerald-950 text-emerald-300 border border-emerald-500 flex items-center gap-2';
     fb.innerHTML = '<i class="fa-solid fa-circle-check"></i> Resposta Correta (+100 pts)!';
@@ -63,6 +63,7 @@ function answerQuiz(qNum, option, isCorrect) {
       document.getElementById(`quiz-q${qNum}`).classList.add('hidden');
       document.getElementById(`quiz-q${nextQ}`).classList.remove('hidden');
     } else {
+      // Quando chega na pergunta 10, esconde ela e mostra a tela final
       document.getElementById(`quiz-q${qNum}`).classList.add('hidden');
       document.getElementById('quiz-final').classList.remove('hidden');
       document.getElementById('final-score-display').innerText = currentScore;

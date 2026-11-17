@@ -57,38 +57,38 @@ const QUIZ_QUESTIONS = [
   },
   {
     id: 7,
-    question: 'O que é o "Reconhecimento" do Passivo na contabilidade?',
-    options: [
-      { letter: 'A', text: 'É a identificação e o registro de uma obrigação presente no Balanço.', correct: true },
-      { letter: 'B', text: 'É a contratação de um novo empréstimo bancário.', correct: false },
-      { letter: 'C', text: 'É a venda de mercadorias para gerar caixa.', correct: false }
-    ]
-  },
-  {
-    id: 8,
-    question: 'Uma empresa contraiu um empréstimo de R$ 20.000. Se ela registrar a dívida pelo valor original, qual base de mensuração foi utilizada?',
-    options: [
-      { letter: 'A', text: 'Valor Justo.', correct: false },
-      { letter: 'B', text: 'Custo Histórico.', correct: true },
-      { letter: 'C', text: 'Valor Presente.', correct: false }
-    ]
-  },
-  {
-    id: 9,
-    question: 'A base de Mensuração que calcula o valor atual dos pagamentos futuros, considerando uma taxa de desconto, é chamada de:',
-    options: [
-      { letter: 'A', text: 'Custo Corrente.', correct: false },
-      { letter: 'B', text: 'Custo Histórico.', correct: false },
-      { letter: 'C', text: 'Valor Presente.', correct: true }
-    ]
-  },
-  {
-    id: 10,
     question: 'Quando o total das obrigações (passivo) de uma empresa é MAIOR do que o total de seus bens (ativo), isso é chamado de:',
     options: [
       { letter: 'A', text: 'Lucro Líquido.', correct: false },
       { letter: 'B', text: 'Passivo a Descoberto.', correct: true },
       { letter: 'C', text: 'Capital Social.', correct: false }
+    ]
+  },
+  {
+    id: 8,
+    question: 'As obrigações trabalhistas (como salários e FGTS) e os impostos a recolher são geralmente classificados como:',
+    options: [
+      { letter: 'A', text: 'Passivo Não Circulante.', correct: false },
+      { letter: 'B', text: 'Patrimônio Líquido.', correct: false },
+      { letter: 'C', text: 'Passivo Circulante.', correct: true }
+    ]
+  },
+  {
+    id: 9,
+    question: 'O que acontece com o Patrimônio Líquido (PL) de uma empresa quando ela apresenta um Passivo a Descoberto?',
+    options: [
+      { letter: 'A', text: 'O PL fica positivo e maior que o Ativo.', correct: false },
+      { letter: 'B', text: 'O PL fica negativo, indicando um desequilíbrio financeiro.', correct: true },
+      { letter: 'C', text: 'O PL não sofre alteração.', correct: false }
+    ]
+  },
+  {
+    id: 10,
+    question: 'Uma compra de mercadoria para pagamento em 24 meses deve ser registrada em qual conta?',
+    options: [
+      { letter: 'A', text: 'Passivo Circulante, pois é uma dívida operacional.', correct: false },
+      { letter: 'B', text: 'Passivo Não Circulante, pois o prazo ultrapassa 12 meses.', correct: true },
+      { letter: 'C', text: 'Ativo Circulante, pois a mercadoria vai gerar lucro.', correct: false }
     ]
   }
 ];

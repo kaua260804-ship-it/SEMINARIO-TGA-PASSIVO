@@ -14,7 +14,7 @@ const CASES_DATA = [
     color: 'blue',
     title: 'Estudo de Caso 02: Mensuração AVP',
     subtitle: 'Ajuste a Valor Presente (AVP)',
-    description: 'Compra de máquinas por R$ 120.000 para pagar em 3 anos. Taxa de juros de mercado: 10% a.a.',
+    description: 'Compra de máquinas por R$ 1.000 para pagar em 1 ano. Taxa de juros de mercado: 10% a.a.',
     treatment: 'O Passivo entra pelo Valor Presente desconsiderando os juros futuros a transcorrer.'
   }
 ];

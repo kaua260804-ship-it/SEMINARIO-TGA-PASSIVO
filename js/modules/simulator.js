@@ -1,9 +1,13 @@
-// simulator.js
+// simulator.js — Simulador de Balanço com Caixa e Bancos separados
 
 let balanceState = {
-  caixa: 100000, estoque: 100000,
-  fornecedores: 30000, trabalhistas: 20000,
-  finanLp: 50000, capital: 100000
+  caixa: 30000,      // 30 mil em espécie
+  bancos: 70000,     // 70 mil em conta bancária
+  estoque: 100000,
+  fornecedores: 30000,
+  trabalhistas: 20000,
+  finanLp: 50000,
+  capital: 100000
 };
 
 function renderSimActions() {
@@ -13,14 +17,14 @@ function renderSimActions() {
         <span>+ COMPRA A PRAZO</span><i class="fa-solid fa-cart-plus"></i>
       </div>
       <div class="text-base font-black text-white">+ R$ 50.000 em Estoque</div>
-      <div class="text-[11px] text-slate-300 mt-1">Débito Ativo / Crédito Passivo (Fornecedores).</div>
+      <div class="text-[11px] text-slate-300 mt-1">Débito Ativo (Estoque) / Crédito Passivo (Fornecedores).</div>
     </button>
     <button onclick="addTransaction('emprestimo')" class="sim-action-card">
       <div class="text-xs font-bold text-indigo-400 mb-1 flex justify-between items-center">
-        <span>+ FINANCIAMENTO</span><i class="fa-solid fa-building-columns"></i>
+        <span>+ FINANCIAMENTO BANCÁRIO</span><i class="fa-solid fa-building-columns"></i>
       </div>
-      <div class="text-base font-black text-white">+ R$ 100.000 no Caixa</div>
-      <div class="text-[11px] text-slate-300 mt-1">Débito Caixa / Crédito PC e PNC.</div>
+      <div class="text-base font-black text-white">+ R$ 100.000 em Bancos</div>
+      <div class="text-[11px] text-slate-300 mt-1">Débito Ativo (Bancos) / Crédito PC e PNC.</div>
     </button>
     <button onclick="addTransaction('salarios')" class="sim-action-card">
       <div class="text-xs font-bold text-emerald-400 mb-1 flex justify-between items-center">
@@ -41,8 +45,13 @@ function renderBalanceSheet() {
           <span id="total-ativo" class="font-mono font-black text-emerald-300">R$ 200.000</span>
         </div>
         <div class="space-y-2 font-mono text-xs">
+          <!-- CAIXA SEPARADO -->
           <div class="flex justify-between p-3 bg-slate-900 rounded-lg border border-slate-700">
-            <span class="text-slate-200">Caixa & Bancos</span><span id="val-caixa" class="text-white font-bold">R$ 100.000</span>
+            <span class="text-slate-200">Caixa (Espécie)</span><span id="val-caixa" class="text-white font-bold">R$ 30.000</span>
+          </div>
+          <!-- BANCOS SEPARADO -->
+          <div class="flex justify-between p-3 bg-slate-900 rounded-lg border border-slate-700">
+            <span class="text-slate-200">Bancos (Conta Corrente)</span><span id="val-bancos" class="text-white font-bold">R$ 70.000</span>
           </div>
           <div class="flex justify-between p-3 bg-slate-900 rounded-lg border border-slate-700">
             <span class="text-slate-200">Estoques</span><span id="val-estoque" class="text-white font-bold">R$ 100.000</span>
@@ -99,16 +108,22 @@ function renderBalanceSheet() {
 }
 
 function updateBalanceUI() {
-  const totalAtivo = balanceState.caixa + balanceState.estoque;
+  // Soma o Caixa + Bancos + Estoque
+  const totalAtivo = balanceState.caixa + balanceState.bancos + balanceState.estoque;
   const pcTotal = balanceState.fornecedores + balanceState.trabalhistas;
   const pncTotal = balanceState.finanLp;
   const totalPP = pcTotal + pncTotal + balanceState.capital;
   const fmt = num => 'R$ ' + num.toLocaleString('pt-BR');
 
   const set = (id, val) => { const el = document.getElementById(id); if (el) el.innerText = val; };
+  
+  // Atualiza os valores do Ativo
   set('val-caixa', fmt(balanceState.caixa));
+  set('val-bancos', fmt(balanceState.bancos));
   set('val-estoque', fmt(balanceState.estoque));
   set('total-ativo', fmt(totalAtivo));
+  
+  // Atualiza o Passivo
   set('val-fornecedores', fmt(balanceState.fornecedores));
   set('val-trabalhistas', fmt(balanceState.trabalhistas));
   set('val-pc-total', fmt(pcTotal));
@@ -117,6 +132,8 @@ function updateBalanceUI() {
   set('val-capital', fmt(balanceState.capital));
   set('val-pl-total', fmt(balanceState.capital));
   set('total-passivo-pl', fmt(totalPP));
+  
+  // Atualiza a equação
   set('eq-ativo', totalAtivo.toLocaleString('pt-BR'));
   set('eq-passivo', totalPP.toLocaleString('pt-BR'));
 }
@@ -126,7 +143,7 @@ function addTransaction(type) {
     balanceState.estoque += 50000;
     balanceState.fornecedores += 50000;
   } else if (type === 'emprestimo') {
-    balanceState.caixa += 100000;
+    balanceState.bancos += 100000; // O dinheiro do empréstimo vai para a conta BANCOS, não para o Caixa.
     balanceState.fornecedores += 20000;
     balanceState.finanLp += 80000;
   } else if (type === 'salarios') {
@@ -137,7 +154,15 @@ function addTransaction(type) {
 }
 
 function resetBalanceSheet() {
-  balanceState = { caixa: 100000, estoque: 100000, fornecedores: 30000, trabalhistas: 20000, finanLp: 50000, capital: 100000 };
+  balanceState = { 
+    caixa: 30000, 
+    bancos: 70000, 
+    estoque: 100000, 
+    fornecedores: 30000, 
+    trabalhistas: 20000, 
+    finanLp: 50000, 
+    capital: 100000 
+  };
   updateBalanceUI();
 }
 
